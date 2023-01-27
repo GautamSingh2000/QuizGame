@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AllQuestions"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:background="#4E277E">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/back_icon"
+            android:background="@drawable/repple_back_btn"/>
+
+        <TextView
+            android:id="@+id/QuizTopic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingBottom="10dp"
+            android:paddingTop="15dp"
+            android:text="choosen icon"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add"
+        android:backgroundTint="@color/purple_200"
+        app:borderWidth="0dp"
+       app:elevation="20dp"
+        app:fabCustomSize="70dp"
+        app:rippleColor="@color/dark_purple"
+       android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="25dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/actionbar"
+        android:id="@+id/Quesion_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+
+</RelativeLayout>

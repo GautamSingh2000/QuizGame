@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateQuestion"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:background="#4E277E">
+
+        <ImageView
+            android:id="@+id/back_btn"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/back_icon"
+            android:background="@drawable/repple_back_btn"/>
+
+        <TextView
+            android:id="@+id/QuizTopic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingBottom="10dp"
+            android:paddingTop="15dp"
+            android:text="choosen Topic"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/Admin_Ques"
+        android:layout_width="362dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="20dp"
+        android:minWidth="300dp"
+        android:minHeight="200dp"
+        android:inputType="text"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:maxLines="3"
+        android:hint="Write your Question..."
+        android:background="@drawable/custom_input"
+        android:textAlignment="center"/>
+
+    <EditText
+        android:id="@+id/AdminFirstOption"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:hint="option A"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/kanit_medium"
+        android:inputType="text"/>
+    <EditText
+        android:id="@+id/AdminSecondOption"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:hint="option B"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/kanit_medium"
+        android:inputType="text"/>
+    <EditText
+        android:id="@+id/AdminThirdOption"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:hint="option C"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/kanit_medium"
+        android:inputType="text"/>
+    <EditText
+        android:id="@+id/AdminForthOption"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:hint="option D"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:background="@drawable/custom_input"
+        android:fontFamily="@font/kanit_medium"
+        android:inputType="text"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter the correct Answer"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        android:textSize="18dp"
+        android:fontFamily="@font/kanit_medium"
+        />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <RadioButton
+            android:id="@+id/answer_a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="A"/>
+
+        <RadioButton
+            android:id="@+id/AnsB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="B"/>
+
+        <RadioButton
+            android:id="@+id/AnsC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="C"/>
+
+        <RadioButton
+            android:id="@+id/AnsD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="D"/>
+
+    </RadioGroup>
+<!--    <EditText-->
+<!--        android:id="@+id/Admin_answer"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginEnd="20dp"-->
+<!--        android:layout_marginStart="120dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:hint="Enter correct answer"-->
+<!--        android:textAllCaps="true"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:background="@drawable/custom_input"-->
+<!--        android:fontFamily="@font/kanit_medium"-->
+<!--        android:paddingStart="10dp"-->
+<!--        android:paddingRight="10dp"-->
+<!--        android:textAlignment="center"-->
+<!--        android:inputType="text"/>-->
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/q_add"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="10dp"
+        android:text="Add"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:elevation="15dp"
+        android:background="@drawable/next_btn"
+        android:fontFamily="@font/kanit_medium"/>
+
+
+
+</LinearLayout>

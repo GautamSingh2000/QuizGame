@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QuizResult"
+    android:background="@color/purple_200">
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/cangrats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="-10dp"
+        app:lottie_rawRes="@raw/party_anim"
+        app:lottie_loop="false"
+        android:elevation="5dp"
+        app:lottie_autoPlay="true"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/trophy"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:layout_marginTop="-20dp"
+        android:elevation="3dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/trophi_icon" />
+
+    <LinearLayout
+        android:layout_below="@+id/trophy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/scoreBord">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You've successfully completetd a quiz"
+            android:textColor="@color/white"
+            android:fontFamily="@font/kanit_medium"
+            android:textAllCaps="true"
+            android:textSize="18dp"
+            android:layout_marginStart="25dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/Correct_scr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Correct Answers : 0 "
+            android:textColor="@color/white"
+            android:fontFamily="@font/kanit_medium"
+            android:textAllCaps="true"
+            android:textSize="16dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/Wrong_scr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wrong Answers : 0 "
+            android:textColor="@color/white"
+            android:fontFamily="@font/kanit_medium"
+            android:textAllCaps="true"
+            android:textSize="16dp"
+            android:layout_marginStart="145dp"
+            android:layout_marginTop="1dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/new_quiz"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Start new Quiz"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:background="@drawable/next_btn"
+            android:layout_marginStart="125dp"
+            android:layout_marginTop="50dp"/>
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="153dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="-15dp"
+        android:src="@drawable/scorebord" />
+
+
+</RelativeLayout>
