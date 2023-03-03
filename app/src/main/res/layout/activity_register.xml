@@ -1,153 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".RegisterActivity"
-    android:background="@color/purple_200"
-    android:orientation="vertical"
-    android:gravity="center">
-    <LinearLayout
+    android:background="@color/purple_200">
+
+    <ImageView
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/user_page_bg"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/login_box"
-        android:orientation="vertical"
-        android:layout_marginVertical="200dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp">
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/Admin_tv"
+            android:layout_gravity="center"
+            android:layout_marginVertical="200dp"
+            android:layout_marginStart="65dp"
+            android:layout_marginEnd="40dp"
+            android:background="@drawable/login_box"
+            android:elevation="20dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/Admin_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="5dp"
+                    android:text="Admin"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_purple"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:text="/"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_purple"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/Player_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp"
+                    android:text="Player"
+                    android:textAllCaps="true"
+                    android:textColor="@color/dark_gray" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:text="Admin"
-                android:textColor="@color/dark_purple"
-                android:textAllCaps="true"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_email"
+                android:drawablePadding="15dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
                 android:paddingLeft="20dp"
-                android:paddingTop="5dp"/>
-            <TextView
+                android:textSize="15dp" />
+
+            <EditText
+                android:id="@+id/Full_name"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:text="/"
-                android:textColor="@color/dark_purple"
-                android:textAllCaps="true"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"/>
-            <TextView
-                android:id="@+id/Player_tv"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_person"
+                android:drawablePadding="15dp"
+                android:hint="Full Name"
+                android:inputType="text"
+                android:paddingLeft="20dp"
+                android:textSize="15dp"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/password"
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:text="Player"
-                android:textColor="@color/dark_gray"
-                android:textAllCaps="true"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"/>
-        </LinearLayout>
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_lock"
+                android:drawablePadding="15dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:textSize="15dp" />
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/custom_input"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            android:textSize="15dp"
-            android:paddingLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:drawablePadding="15dp"
-            android:drawableStart="@drawable/custom_email"/>
+            <EditText
+                android:id="@+id/Confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/custom_input"
+                android:drawableStart="@drawable/custom_lock"
+                android:drawablePadding="15dp"
+                android:hint="Confirm_password"
+                android:inputType="textPassword"
+                android:paddingLeft="20dp"
+                android:textSize="15dp"
+                android:visibility="visible" />
 
-        <EditText
-            android:visibility="visible"
-            android:id="@+id/Full_name"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/custom_input"
-            android:hint="Full Name"
-            android:inputType="textPassword"
-            android:textSize="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="20dp"
-            android:drawablePadding="15dp"
-            android:drawableStart="@drawable/custom_person"/>
+            <RadioGroup
+                android:id="@+id/gender_radio_group"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/password"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/custom_input"
-            android:hint="Password"
-            android:inputType="textPassword"
-            android:textSize="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="20dp"
-            android:drawablePadding="15dp"
-            android:drawableStart="@drawable/custom_lock"/>
-
-        <EditText
-            android:visibility="visible"
-            android:id="@+id/Confirm_password"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@drawable/custom_input"
-            android:hint="Confirm_password"
-            android:inputType="textPassword"
-            android:textSize="15dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:paddingLeft="20dp"
-            android:drawablePadding="15dp"
-            android:drawableStart="@drawable/custom_lock"/>
-
-        <LinearLayout
-            android:id="@+id/login_ll"
-            android:visibility="visible"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            >
-            <TextView
+            <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Do you have account?"
-                android:layout_gravity="center"
-                android:textColor="@color/dark_gray"/>
-            <TextView
-                android:id="@+id/login_tv"
+                android:theme="@style/custom_radio_btn"
+                android:id="@+id/male"
+                android:text="Male"
+                />
+            <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="2dp"
-                android:text="Login"
-                android:textStyle="bold"
-                android:fontFamily="@font/kanit_medium"
-                android:layout_gravity="center"
-                android:textColor="@color/dark_gray"/>
-        </LinearLayout>
+                android:theme="@style/custom_radio_btn"
+                android:id="@+id/female"
+                android:text="Female"
+                />
+                </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/login_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Do you have account?"
+                    android:textColor="@color/dark_gray" />
+
+                <TextView
+                    android:id="@+id/login_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="2dp"
+                    android:fontFamily="@font/kanit_medium"
+                    android:text="Login"
+                    android:textColor="@color/dark_gray"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:visibility="visible"
                 android:id="@+id/signup_btn"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/next_btn"
                 android:text="Signup"
                 android:textColor="@color/white"
-                android:layout_marginStart="115dp"
-                android:layout_marginTop="9dp"
-                android:layout_marginBottom="10dp"/>
+                android:visibility="visible" />
 
+        </LinearLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/peep_animation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="-81.8dp"
+            android:visibility="invisible"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/shiba_peep"
+            app:lottie_repeatCount="2"
+            app:lottie_repeatMode="reverse" />
     </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>

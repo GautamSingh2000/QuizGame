@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.util.Log;
@@ -19,6 +20,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,7 +35,7 @@ import java.util.TimerTask;
 
 public class TestActivity extends AppCompatActivity {
 
-    DatabaseReference db = FirebaseDatabase.getInstance().getReferenceFromUrl("https://quiz-d45c8-default-rtdb.firebaseio.com/");
+    DatabaseReference db = FirebaseDatabase.getInstance().getReferenceFromUrl("https://quiz-d45c8-default-rtdb.firebaseio.com/user");
 
     private AppCompatButton OptionA, OptionB, OptionC, OptionD;
     private AppCompatButton NextBtn, submit_btn;
@@ -46,11 +49,16 @@ public class TestActivity extends AppCompatActivity {
     private Timer QuizTimer;
     private int TotalTimeInMins = 1;
     private int second = 0;
+    private CountDownTimer cdt;
 
     private ArrayList<QuestionModel> SList;
     private int CurrentQuestoionPosition = 0;
 
-    private String Answer = null, Email, SelectedTopic, UserAnswer = "";
+    private String Answer = null, full_name, SelectedTopic, UserAnswer = "";
+    private int CAns =0, InAns=0;
+
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,13 +78,18 @@ public class TestActivity extends AppCompatActivity {
         submit_btn = (AppCompatButton) findViewById(R.id.Submit_Btn);
         submit_btn.setVisibility(View.INVISIBLE);
 
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
         SelectedTopic = getIntent().getStringExtra("selectedTopic");
         ChoosenTopic.setText(SelectedTopic);
-        Email = getIntent().getStringExtra("Email");
+        full_name = mUser.getDisplayName();
+
+        Log.e(TAG, "in TestActivity: "+SelectedTopic+" "+full_name);
 
         LoadQuestion();
 
-        startTimer(Timer_text);
+        StartTimerforQuiz(Timer_text);
 
         OptionA.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,9 +97,10 @@ public class TestActivity extends AppCompatActivity {
                 if (UserAnswer.isEmpty())
                 {
                     UserAnswer=OptionA.getText().toString();
-                    Log.e(TAG, "onClick: OptionA"+ UserAnswer );
+                    Log.e(TAG, "onClick: OptionA "+ UserAnswer );
                     OptionA.setBackgroundResource(R.drawable.red_background);
                     OptionA.setTextColor(Color.WHITE);
+                    CalculateAns();
                     revealAns();
                 }
             }
@@ -98,9 +112,10 @@ public class TestActivity extends AppCompatActivity {
                 if (UserAnswer.isEmpty())
                 {
                     UserAnswer=OptionB.getText().toString();
-                    Log.e(TAG, "onClick: OptionB"+ UserAnswer );
+                    Log.e(TAG, "onClick: OptionB "+ UserAnswer );
                     OptionB.setBackgroundResource(R.drawable.red_background);
                     OptionB.setTextColor(Color.WHITE);
+                    CalculateAns();
                     revealAns();
                 }
             }
@@ -112,9 +127,10 @@ public class TestActivity extends AppCompatActivity {
                 if (UserAnswer.isEmpty())
                 {
                     UserAnswer=OptionC.getText().toString();
-                    Log.e(TAG, "onClick: OptionC"+ UserAnswer );
+                    Log.e(TAG, "onClick: OptionC "+ UserAnswer );
                     OptionC.setBackgroundResource(R.drawable.red_background);
                     OptionC.setTextColor(Color.WHITE);
+                    CalculateAns();
                     revealAns();
                 }
             }
@@ -126,9 +142,10 @@ public class TestActivity extends AppCompatActivity {
                 if (UserAnswer.isEmpty())
                 {
                     UserAnswer=OptionD.getText().toString();
-                    Log.e(TAG, "onClick: OptionD"+ UserAnswer );
+                    Log.e(TAG, "onClick: OptionD "+ UserAnswer );
                     OptionD.setBackgroundResource(R.drawable.red_background);
                     OptionD.setTextColor(Color.WHITE);
+                    CalculateAns();
                     revealAns();
                 }
             }
@@ -142,10 +159,6 @@ public class TestActivity extends AppCompatActivity {
                 }
                 else{
                     ChangeQuestion();
-//                    getCorrectAns();
-//                    getIncorrectAns();
-//                    Log.e(TAG, "getCorrectAns in Nextbtn: "+CorrectAns);
-//                    Log.e(TAG, "getInCorrectAns in Nextbtn: "+InCorrectAns);
                 }
             }
         });
@@ -154,8 +167,8 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(TestActivity.this, QuizResult.class);
-                i.putExtra("correct",getCorrectAns());
-                i.putExtra("incorrecet",getIncorrectAns());
+                i.putExtra("correct",CAns);
+                i.putExtra("incorrect",InAns);
                 startActivity(i);
                 finish();
             }
@@ -172,9 +185,48 @@ public class TestActivity extends AppCompatActivity {
 
     }
 
+    private void StartTimerforQuiz(TextView timer_text) {
+        new CountDownTimer(60000,1000){
+            @Override
+            public void onTick(long millisUntilFinished) {
+                if(second==0)
+                {
+                    TotalTimeInMins--;
+                    second=60;
+                }
+                second--;
+                updateTimetext(timer_text);
+            }
+            @Override
+            public void onFinish() {
+                Toast.makeText(TestActivity.this, "Time is over", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(TestActivity.this, QuizResult.class);
+                i.putExtra("correct",CAns);
+                i.putExtra("incorrect",InAns);
+                startActivity(i);
+                finish();
+            }
+        }.start();
+
+    }
+    private void updateTimetext(TextView timer_text) {
+        int timeInSec = (int) (second%60);
+        String finalSec = String.valueOf(timeInSec);
+        String  finalMin = String.valueOf(TotalTimeInMins);
+        if (finalMin.length()==1)
+        {
+            finalMin = "0"+finalMin;
+        }
+        if(finalSec.length()==1)
+        {
+            finalSec="0"+finalSec;
+        }
+        timer_text.setText(finalMin+":"+finalSec);
+    }
+
     void LoadQuestion()
     {
-        db.child("user").child("Question").child(Email).child(SelectedTopic).addValueEventListener(new ValueEventListener() {
+        db.child("Admin").child(full_name).child("Questions").child(SelectedTopic).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 SList = new ArrayList<>();
@@ -189,7 +241,7 @@ public class TestActivity extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(TestActivity.this, "No Question Found ", Toast.LENGTH_SHORT).show();
-                finish();
+                    finish();
                 }
             }
             @Override
@@ -210,6 +262,18 @@ public class TestActivity extends AppCompatActivity {
     OptionB.setText(QM.getOptionB());
     OptionC.setText(QM.getOptionC());
     OptionD.setText(QM.getOptionD());
+    }
+
+    private void CalculateAns()
+    {
+        if(!UserAnswer.equals(Answer))
+        {
+            InAns++;
+            vibration();
+        }
+        else{
+            CAns++;
+        }
     }
 
     private void revealAns( )
@@ -237,110 +301,17 @@ public class TestActivity extends AppCompatActivity {
     }
 
 
-    private void startTimer(TextView TimerTextView)
-    {
-        QuizTimer = new Timer();
-        QuizTimer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                if(second==0)
-                {
-                    TotalTimeInMins--;
-                    second=59;
-                }
-                else if(second==00 && TotalTimeInMins==00)
-                {
-                    QuizTimer.purge();
-                    QuizTimer.cancel();
-                    Toast.makeText(TestActivity.this, "Time is over", Toast.LENGTH_SHORT).show();
-
-                    Intent i = new Intent(TestActivity.this, QuizResult.class);
-                    i.putExtra("correct",getCorrectAns());
-                    i.putExtra("incorrecet",getIncorrectAns());
-                    startActivity(i);
-                    finish();
-                }
-
-                else{
-                    second--;
-                }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String  finalMin = String.valueOf(TotalTimeInMins);
-                        String finalSec = String.valueOf(second);
-                        if(finalMin.length()==1)
-                        {
-                            finalMin ="0"+finalMin;
-                        }
-                        if(finalSec.length()==1)
-                        {
-                            finalSec = "0"+finalSec;
-                        }
-                        TimerTextView.setText(finalMin+":"+finalSec);
-                    }
-                });
-            }
-        },1000,1000);
-    }
-
-    private int getCorrectAns()
-    {
-        int CorrectAns = 0;
-        for(int i = 0; i<SList.size();i++)
-        {
-           final String getAns = SList.get(i).getAnswer();
-            if(UserAnswer.equals(getAns))
-            {
-                CorrectAns++;
-                Log.e(TAG, "getCorrectAns in Function: "+CorrectAns);
-            }
-        }
-//        if(CurrentQuestoionPosition < SList.size())
-//        {
-//            if(Answer.equals(UserAnswer))
-//            {
-//                CorrectAns++;
-//                Log.e(TAG, "getCorrectAns in Function: "+CorrectAns);
-//            }
-//        }
-        return CorrectAns;
-    }
-
-    private int getIncorrectAns()
-    { int InCorrectAns = 0;
-        for(int i = 0; i<SList.size();i++)
-        {
-          final String getAns = SList.get(i).getAnswer();
-            if(!UserAnswer.equals(getAns))
-            {
-                vibration();
-                InCorrectAns++;
-                Log.e(TAG, "getCorrectAns in function: "+InCorrectAns);
-            }
-        }
-//        if(CurrentQuestoionPosition < SList.size())
-//        {
-//
-//            if(!Answer.equals(UserAnswer))
-//            {
-//
-//                InCorrectAns++;
-//                Log.e(TAG, "getCorrectAns in function: "+InCorrectAns);
-//            }
-//        }
-        return InCorrectAns;
-    }
-
     private void ChangeQuestion(){
         CurrentQuestoionPosition++;
-        if((CurrentQuestoionPosition) == SList.size())
+        Log.e(TAG, "ChangeQuestion: "+CurrentQuestoionPosition );
+        if((CurrentQuestoionPosition < SList.size()))
         {
-            NextBtn.setVisibility(View.GONE);
-            submit_btn.setVisibility(View.VISIBLE);
-        }
-        else if((CurrentQuestoionPosition < SList.size()))
-        {
+            if((CurrentQuestoionPosition+1) == SList.size())
+            {
+                NextBtn.setVisibility(View.GONE);
+                submit_btn.setVisibility(View.VISIBLE);
+            }
+
             UserAnswer="";
             Answer="";
 
@@ -355,7 +326,6 @@ public class TestActivity extends AppCompatActivity {
 
         QNo.setText((CurrentQuestoionPosition+1)+"/"+SList.size());
         Answer = SList.get(CurrentQuestoionPosition).getAnswer();
-            Log.e(TAG, "ChangeQuestion: "+Answer + "   " + CurrentQuestoionPosition);
         Questions.setText(SList.get(CurrentQuestoionPosition).getQuestion());
         OptionA.setText(SList.get(CurrentQuestoionPosition).getOptionA());
         OptionB.setText(SList.get(CurrentQuestoionPosition).getOptionB());
@@ -369,8 +339,6 @@ public class TestActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        QuizTimer.purge();
-        QuizTimer.cancel();
         startActivity(new Intent(TestActivity.this,MainActivity.class));
         finish();
     }
@@ -382,10 +350,10 @@ public class TestActivity extends AppCompatActivity {
        {
            if(Build.VERSION.SDK_INT >=26)
            {
-               vibrate.vibrate(VibrationEffect.createOneShot(1000,VibrationEffect.DEFAULT_AMPLITUDE));
+               vibrate.vibrate(VibrationEffect.createOneShot(500,VibrationEffect.DEFAULT_AMPLITUDE));
            }
            else{
-               vibrate.vibrate(1000);
+               vibrate.vibrate(500);
        }
 
        }

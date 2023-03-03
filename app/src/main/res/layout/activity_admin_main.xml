@@ -26,9 +26,9 @@
         android:id="@+id/profile_circle"
         android:layout_width="125dp"
         android:layout_height="125dp"
+        android:layout_marginStart="150dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
-        android:layout_centerHorizontal="true"
         android:translationZ="-1dp"
         app:cardCornerRadius="100dp"
         tools:ignore="MissingClass">
@@ -46,7 +46,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/profile_details"
-        android:layout_centerHorizontal="true"
         android:gravity="center"
         android:layout_marginBottom="30dp">
         <TextView
@@ -79,112 +78,112 @@
         android:elevation="10dp"
         />
 
-<RelativeLayout
-    android:translationZ="1dp"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:id="@+id/menu_layout"
-    android:visibility="invisible"
-    >
-    <View
-        android:id="@+id/menu_box"
-        android:layout_marginTop="50dp"
-        android:layout_width="200dp"
+    <RelativeLayout
+        android:translationZ="1dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/gradient_rec"/>
-    <LinearLayout
-        android:id="@+id/menu_iteam"
-        android:layout_alignTop="@+id/menu_box"
-        android:layout_alignStart="@+id/menu_box"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:id="@+id/menu_layout"
+        android:visibility="invisible"
+        >
+        <View
+            android:id="@+id/menu_box"
+            android:layout_marginTop="50dp"
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/gradient_rec"/>
         <LinearLayout
+            android:id="@+id/menu_iteam"
+            android:layout_alignTop="@+id/menu_box"
+            android:layout_alignStart="@+id/menu_box"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:paddingStart="10dp">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/logout"
-                android:layout_gravity="center"/>
-            <TextView
-                android:id="@+id/tv_logout"
-                android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="LogOut"
-                android:gravity="center"
-                android:textSize="19sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"/>
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:paddingStart="10dp">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/logout"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:id="@+id/tv_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LogOut"
+                    android:gravity="center"
+                    android:textSize="19sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
-        <View android:layout_height="1dp"
-            android:layout_width="match_parent"
-            android:background="@color/black"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"/>
+            <View android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:background="@color/black"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:paddingStart="10dp">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="10dp"
-                android:src="@drawable/white_person"
-                android:layout_gravity="center"/>
-            <TextView
-                android:id="@+id/tv_profile_update"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" Profile Update"
-                android:gravity="center"
-                android:textSize="19sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"/>
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:paddingStart="10dp">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:src="@drawable/person"
+                    android:layout_gravity="center"/>
+                <TextView
+                    android:id="@+id/tv_profile_update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Profile Update"
+                    android:gravity="center"
+                    android:textSize="19sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
-        <View android:layout_height="1dp"
-            android:layout_width="match_parent"
-            android:background="@color/black"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"/>
+            <View android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:background="@color/black"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:paddingStart="40dp">
-            <TextView
-                android:id="@+id/tv_about_me"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" About me"
-                android:gravity="center"
-                android:textSize="19sp"
-                android:textColor="@color/white"
-                android:textStyle="bold"/>
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:paddingStart="40dp">
+                <TextView
+                    android:id="@+id/tv_about_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" About me"
+                    android:gravity="center"
+                    android:textSize="19sp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
-        <View android:layout_height="1dp"
-            android:layout_width="match_parent"
-            android:background="@color/black"
-            android:layout_marginTop="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"/>
-    </LinearLayout>
-</RelativeLayout>
+            <View android:layout_height="1dp"
+                android:layout_width="match_parent"
+                android:background="@color/black"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"/>
+        </LinearLayout>
+    </RelativeLayout>
 
 
     <TextView

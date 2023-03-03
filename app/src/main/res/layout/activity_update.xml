@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Update"
+    android:id="@+id/Setting_Activity_Parent"
+    >
+    <RelativeLayout
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="59dp"
+        android:background="@color/dark_purple">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:src="@drawable/back_icon"
+            android:background="@drawable/repple_back_btn"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="20sp"
+            android:layout_toEndOf="@+id/btn_back"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20sp"
+            />
+
+        <ImageView
+            android:id="@+id/btn_done"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/done"
+            android:background="@drawable/repple_back_btn"/>
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_below="@+id/tool_bar"
+        android:id="@+id/profile_circle"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="10dp"
+        android:translationZ="-1dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="100dp"
+        android:layout_centerHorizontal="true"
+       >
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/iv_profile"
+            android:layout_width="145dp"
+            android:layout_height="145dp"
+            android:src="@drawable/male_img"/>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:textSize="15sp"
+        android:fontFamily="@font/poppins_medium"
+        android:textColor="@color/secondry_dark_purple"
+        android:layout_below="@+id/profile_circle"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:layout_below="@id/tv_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/container_email"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/purple_holo_box">
+
+            <!-- Label -->
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Email "
+                android:textColor="@color/dark_purple"
+                android:textSize="15sp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="20dp"
+                />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_height="48dp"
+                android:layout_width="0dp"
+                android:maxLines="1"
+                android:layout_weight="2"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_fullname"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:paddingEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/purple_holo_box">
+
+            <!-- Label -->
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Full Name "
+                android:inputType="text"
+                android:textSize="15sp"
+                android:textColor="@color/dark_purple"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="20dp"
+                />
+
+                <EditText
+                    android:id="@+id/et_fullname"
+                    android:layout_height="48dp"
+                    android:layout_width="0dp"
+                    android:maxLines="1"
+                    android:layout_weight="2"
+                    android:textSize="16sp"
+                    android:inputType="textEmailAddress"
+                    android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container_gender"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/purple_holo_box">
+
+            <!-- Label -->
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="Gender"
+                android:textColor="@color/dark_purple"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+               />
+
+            <!-- Input field -->
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:orientation="vertical">
+
+                <!-- Gender drop-down spinner -->
+                <Spinner
+                    android:id="@+id/spinner_gender"
+                    android:layout_height="48dp"
+                    android:layout_width="wrap_content"
+                    android:paddingEnd="16dp"
+                    android:layout_marginTop="5dp"
+                    android:spinnerMode="dropdown"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

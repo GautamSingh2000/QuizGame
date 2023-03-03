@@ -1,3 +1,10 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
     <string name="app_name">quiz</string>
+    <string name="singout">Singout</string>
+    <string name="edit">Edit</string>
+    
+    <string-array name="Gender_spinner" >
+        <item >Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

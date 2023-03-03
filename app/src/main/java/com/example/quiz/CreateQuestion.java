@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +28,7 @@ import java.util.UUID;
 
 public class CreateQuestion extends AppCompatActivity {
 
-    private String choosenTopic ,Email;
+    private String choosenTopic ,full_name;
     private EditText Question,OptionA,OptionB,OptionC,OptionD;
     private RadioButton ansA,ansB,ansC,ansD,selectedradio_btn;
     private TextView Topic;
@@ -34,13 +36,22 @@ public class CreateQuestion extends AppCompatActivity {
     private RadioGroup radiogroup;
     private AppCompatButton Add_btn;
 
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_question);
 
-        Email = getIntent().getStringExtra("Email");
+        mAuth = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
         choosenTopic = getIntent().getStringExtra("Topic");
+        full_name = mUser.getDisplayName();
+
+
+        Log.e("tag", "in Createquestion: "+" "+choosenTopic+" "+full_name);
         ImageView Back_Btn =(ImageView)findViewById(R.id.back_btn);
 
         Question = (EditText) findViewById(R.id.Admin_Ques);
@@ -102,23 +113,22 @@ public class CreateQuestion extends AppCompatActivity {
                     }
 
                     String finalAnswer = answer;
-                    db.child("Questions").addListenerForSingleValueEvent(new ValueEventListener() {
+                    db.child("Admin").child(full_name).child("Questions").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            db.child("Question").child(Email).child(choosenTopic).child(QuestionId).child("Question").setValue(question_String);
-                            db.child("Question").child(Email).child(choosenTopic).child(QuestionId).child("OptionA").setValue(optionA_String);
-                            db.child("Question").child(Email).child(choosenTopic).child(QuestionId).child("OptionB").setValue(optionB_String);
-                            db.child("Question").child(Email).child(choosenTopic).child(QuestionId).child("OptionC").setValue(optionC_String);
-                            db.child("Question").child(Email).child(choosenTopic).child(QuestionId).child("OptionD").setValue(optionD_String);
-                            db.child("Question").child(Email).child(choosenTopic).child(QuestionId).child("Answer").setValue(finalAnswer);
+                            Log.e("tag", "onDataChange: "+full_name+" "+choosenTopic+" "+QuestionId+" "+question_String);
+                            db.child("Admin").child(full_name).child("Questions").child(choosenTopic).child(QuestionId).child("Question").setValue(question_String);
+                            db.child("Admin").child(full_name).child("Questions").child(choosenTopic).child(QuestionId).child("OptionA").setValue(optionA_String);
+                            db.child("Admin").child(full_name).child("Questions").child(choosenTopic).child(QuestionId).child("OptionB").setValue(optionB_String);
+                            db.child("Admin").child(full_name).child("Questions").child(choosenTopic).child(QuestionId).child("OptionC").setValue(optionC_String);
+                            db.child("Admin").child(full_name).child("Questions").child(choosenTopic).child(QuestionId).child("OptionD").setValue(optionD_String);
+                            db.child("Admin").child(full_name).child("Questions").child(choosenTopic).child(QuestionId).child("Answer").setValue(finalAnswer);
                             Toast.makeText(CreateQuestion.this, "Saved!", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(CreateQuestion.this,AllQuestions.class);
-                            startActivity(i);
-//                            finish();
+                            finish();
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
+                            Toast.makeText(CreateQuestion.this, "Not saved!", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -128,8 +138,7 @@ public class CreateQuestion extends AppCompatActivity {
         Back_Btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(CreateQuestion.this,AllQuestions.class);
-                startActivity(i);
+                onBackPressed();
                 finish();
             }
         });

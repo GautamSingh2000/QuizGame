@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+   <item android:id="@+id/sinout_Action"
+       android:title="@string/singout"
+       app:showAsAction="never"
+       />
+    <item
+        android:id="@+id/profile_edit"
+        android:title="Edit Profile"
+        app:showAsAction="never"
+        />
+
+<!--    <item-->
+<!--        android:id="@+id/Company_detail"-->
+<!--        android:title="Company Detail"-->
+<!--        app:showAsAction="never"/>-->
+
+<!--    <item-->
+<!--        app:showAsAction="never"-->
+<!--        android:id="@+id/Help_center"-->
+<!--        android:title="Help Center"/>-->
+
+<!--    <item android:id="@+id/Privacy"-->
+<!--        app:showAsAction="never"-->
+<!--        android:title="Privacy"/>-->
+</menu>

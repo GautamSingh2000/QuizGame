@@ -35,11 +35,4 @@ public class QuizResult extends AppCompatActivity {
         });
 
     }
-
-    @Override
-    public void onBackPressed()
-    {
-        Intent i = new Intent(QuizResult.this,MainActivity.class);
-        finish();
-    }
 }

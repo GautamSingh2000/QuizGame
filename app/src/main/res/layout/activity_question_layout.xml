@@ -192,10 +192,16 @@
             android:paddingTop="10dp"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:background="@drawable/correctans"
             android:fontFamily="@font/kanit_medium"
             android:layout_marginBottom="10dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_weight="4"
+            android:layout_height="1.2dp"
+            android:background="@color/black" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -65,7 +65,7 @@
         android:layout_width="70dp"
         android:layout_height="30dp"
         android:textColor="#4E277E"
-        android:paddingLeft="17dp"
+        android:paddingLeft="20dp"
         android:paddingTop="5dp"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
