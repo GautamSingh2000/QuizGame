@@ -8,16 +8,6 @@
     android:background="@color/purple_200"
 
    >
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/user_page_bg"
-        android:rotation="-100"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="100dp"
-        />
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/second_starting_animation"
         android:layout_width="300dp"
@@ -31,7 +21,4 @@
         app:lottie_repeatCount="3"
         app:lottie_repeatMode="reverse"
         android:layout_marginTop="0dp"/>
-
-
-
 </RelativeLayout>
